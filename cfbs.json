@@ -20,6 +20,17 @@
       "tags": ["local"],
       "added_by": "cfbs add",
       "steps": ["json ./def.json def.json"]
+    },
+    {
+      "name": "./churn_local_users.cf",
+      "description": "Local policy file added using cfbs command line",
+      "tags": ["local"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./churn_local_users.cf services/cfbs/churn_local_users.cf",
+        "policy_files services/cfbs/churn_local_users.cf",
+        "bundles churn_local_users"
+      ]
     }
   ],
   "git": true

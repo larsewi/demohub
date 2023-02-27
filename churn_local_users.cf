@@ -1,0 +1,12 @@
+bundle agent churn_local_users
+{
+  vars:
+      "user[$(demohub:local.users)]"
+        string => ifelse(isgreaterthan(randomint("0", "100"), "25"), "absent", "present"),
+        if => not(isvariable("user[$(demohub:local.users)]"));
+
+  users:
+    !windows::
+      "$(demohub:local.users)"
+        policy => "$(user[$(demohub:local.users)])";
+}
