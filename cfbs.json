@@ -33,6 +33,15 @@
       ]
     },
     {
+      "name": "./script_monkey.py",
+      "description": "Script monkey",
+      "tags": ["local"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./script_monkey.py script_monkey.py"
+      ]
+    },
+    {
       "name": "library-for-promise-types-in-python",
       "description": "Library enabling promise types implemented in python.",
       "tags": ["supported", "library"],

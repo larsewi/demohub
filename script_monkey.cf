@@ -6,6 +6,8 @@ bundle agent script_monkey
 
   methods:
       "cron"
-        usebundle => cronjob("python3 $(sys.workdir)/script_monkey.py",
-                             "root", "*", "0,5,10,15,20,25,30,35,40,45,50,55");
+        usebundle => cronjob(
+          "/usr/bin/python3 $(sys.workdir)/masterfiles/script_monkey.py > ~/script_monkey.log 2>&1",
+          "root", "5", "*"
+        );
 }
