@@ -1,0 +1,7 @@
+{
+  "name": "demohub",
+  "type": "policy-set",
+  "description": "CFEngine demo policy",
+  "build": [],
+  "git": true
+}
