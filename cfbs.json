@@ -31,6 +31,34 @@
         "policy_files services/cfbs/churn_local_users.cf",
         "bundles churn_local_users"
       ]
+    },
+    {
+      "name": "library-for-promise-types-in-python",
+      "description": "Library enabling promise types implemented in python.",
+      "tags": ["supported", "library"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/cfengine",
+      "version": "0.2.1",
+      "commit": "70afe61739bbb2cfc205dc0b604fbdda96b6be43",
+      "subdirectory": "libraries/python",
+      "added_by": "promise-type-groups",
+      "steps": ["copy cfengine.py modules/promises/"]
+    },
+    {
+      "name": "promise-type-groups",
+      "description": "Experimental promise type to manage local user groups.",
+      "tags": ["supported", "promise-type", "experimental"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/larsewi",
+      "version": "0.2.3",
+      "commit": "70afe61739bbb2cfc205dc0b604fbdda96b6be43",
+      "subdirectory": "promise-types/groups",
+      "dependencies": ["library-for-promise-types-in-python"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy groups.py modules/promises/",
+        "append enable.cf services/init.cf"
+      ]
     }
   ],
   "git": true
