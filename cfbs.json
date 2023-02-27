@@ -59,6 +59,17 @@
         "copy groups.py modules/promises/",
         "append enable.cf services/init.cf"
       ]
+    },
+    {
+      "name": "./churn_local_groups.cf",
+      "description": "Local policy file added using cfbs command line",
+      "tags": ["local"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./churn_local_groups.cf services/cfbs/churn_local_groups.cf",
+        "policy_files services/cfbs/churn_local_groups.cf",
+        "bundles churn_local_groups"
+      ]
     }
   ],
   "git": true

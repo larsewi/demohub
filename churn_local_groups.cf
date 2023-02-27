@@ -1,0 +1,34 @@
+body members regions(inc, exc)
+{
+  include => $(inc);
+  exclude => $(exc);
+}
+
+bundle agent churn_local_groups
+{
+  vars:
+      "group[$(demohub:local.groups)]"
+        string => ifelse(isgreaterthan(randomint("0", "100"), "25"), "absent", "present"),
+        if => not(isvariable("group[$(demohub:local.groups)]"));
+
+      "shuffled"
+        slist => shuffle("demohub:local.users", randomint("0", "100"));
+
+      "num_users"
+        int => length("shuffled");
+
+      "one_third"
+        int => int(eval("$(num_users) / 3"));
+
+      "include_users"
+        slist => sublist("shuffled", "head", "$(one_third)");
+
+      "exclude_users"
+        slist => sublist("shuffled", "tail", "$(one_third)");
+
+  groups:
+    !windows::
+      "$(demohub:local.groups)"
+        policy => "$(group[$(demohub:local.groups)])",
+        members => regions("$(include_users)", "$(exclude_users)");
+}
