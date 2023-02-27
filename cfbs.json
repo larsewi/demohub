@@ -70,6 +70,20 @@
         "policy_files services/cfbs/churn_local_groups.cf",
         "bundles churn_local_groups"
       ]
+    },
+    {
+      "name": "cfengine-supported",
+      "description": "Adds reporting data (inventory) for the support status for the current version of CFEngine.",
+      "tags": ["supported", "inventory", "security"],
+      "repo": "https://github.com/nickanderson/cfengine-supported",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "commit": "6a09cc850423a063533ffe19e9066753952b9d8d",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./inventory-cfengine-version-support-status.cf services/cfengine-supported/",
+        "json ./cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
