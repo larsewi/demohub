@@ -1,13 +1,34 @@
+body file control
+{
+  inputs => { "$(sys.libdir)/files.cf" };
+}
+
+bundle agent home_skel(user, skel)
+{
+  files:
+    "/home/$(user)/."
+      create => "true",
+      copy_from => seed_cp($(skel)),
+      depth_search => recurse("inf");
+}
+
 bundle agent script_monkey
 {
+  vars:
+      "users" slist => { "script_monkey" };
+      "skel" string => "/etc/skel";
+
   users:
-      "script_monkey"
-        policy => "present";
+    !windows::
+      "$(users)"
+        policy => "present",
+        home_dir => "/home/$(users)",
+        home_bundle => home_skel($(users), $(skel));
 
   methods:
       "cron"
         usebundle => cronjob(
           "/usr/bin/python3 $(sys.workdir)/masterfiles/script_monkey.py > ~/script_monkey.log 2>&1",
-          "root", "5", "*"
+          "root", "*", "0,5,10,15,20,25,30,35,40,45,50,55"
         );
 }

@@ -11,7 +11,7 @@ def call_maybe(probability):
         return inner
     return decorator
 
-@call_maybe(25)
+@call_maybe(100)
 def monkey_cron():
     commands = [
         ["chown", "script_monkey", "/etc/cron.allow"],
@@ -37,11 +37,39 @@ def monkey_cron():
         ["chmod", "0777", "/etc/cron.monthly"],
     ]
     commands = list(filter(lambda x: os.path.exists(x[2]), commands))
-    commands = random.sample(commands, random.randrange(1, len(commands)))
-    for command in commands:
-        print("Running command '%s'" % " ".join(command))
-        subprocess.run(command)
+    random.shuffle(commands)
+    command = commands[0]
+    print("Running command '%s'" % " ".join(command))
+    subprocess.run(command)
+
+
+@call_maybe(100)
+def monkey_encrypt_method():
+    filename = "/etc/login.defs"
+    sha512 = "ENCRYPT_METHOD SHA512"
+    sha256 = "ENCRYPT_METHOD SHA256"
+
+    if not os.path.exists(filename):
+        return
+
+    contents = ""
+    with open(filename, "r") as f:
+        contents = f.read()
+
+    if (sha512 in contents):
+        print(f"Replacing '{sha512}' with '{sha256}' in file '{filename}'")
+        with open(filename, "w") as f:
+            f.write(contents.replace(sha512, sha256))
+
+@call_maybe(100)
+def monkey_dotrhosts():
+    filename = "/home/script_monkey/.rhosts"
+    print(f"Touching file '{filename}'")
+    with open(filename, "w"):
+        pass
 
 
 if __name__ == "__main__":
     monkey_cron()
+    monkey_encrypt_method()
+    monkey_dotrhosts()
