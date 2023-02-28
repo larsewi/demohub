@@ -217,6 +217,22 @@
         "json cfbs/def.json def.json",
         "copy policy/default-encrypt-method-sha512.cf services/security-hardening/default-encrypt-method-sha512/default-encrypt-method-sha512.cf"
       ]
+    },
+    {
+      "name": "delete-home-dotrhosts",
+      "description": "Ensures that ~/.rhosts files are not present, as they present a security risk.",
+      "tags": ["supported", "security", "compliance"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.0",
+      "commit": "9a28d03dbb1f62401c9b4c898524f8304f93fd19",
+      "subdirectory": "security/delete-home-dotrhosts",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy policy/main.cf services/cfbs/delete-home-dotrhosts/",
+        "policy_files services/cfbs/delete-home-dotrhosts/",
+        "bundles delete_home_dotrhosts:main"
+      ]
     }
   ],
   "git": true
