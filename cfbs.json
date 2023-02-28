@@ -202,21 +202,6 @@
         "copy ./cve-2021-3156-sudo.cf services/security-hardening/cves/cve-2021-3156-sudo/",
         "json cfbs/def.json def.json"
       ]
-    },
-    {
-      "name": "cve-2021-44228-log4j",
-      "description": "Leverages yahoo/check-log4j to scan for files potentially vulnerable to CVE-2021-44228, which allows arbitrary code execution.",
-      "tags": ["supported", "security", "cve", "inventory"],
-      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
-      "by": "https://github.com/nickanderson",
-      "version": "0.2.0",
-      "commit": "bdc7a16c6e52ff44149eb2abfd510fcee12dd2c1",
-      "subdirectory": "./cves/cve-2021-44228-log4j",
-      "added_by": "cfbs add",
-      "steps": [
-        "copy ./cve-2021-44228-log4j-inventory-log4shell.cf services/security-hardening/cves/cve-2021-44228-log4j/",
-        "json cfbs/def.json def.json"
-      ]
     }
   ],
   "git": true
