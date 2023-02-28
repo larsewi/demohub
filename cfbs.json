@@ -37,9 +37,7 @@
       "description": "Script monkey",
       "tags": ["local"],
       "added_by": "cfbs add",
-      "steps": [
-        "copy ./script_monkey.py script_monkey.py"
-      ]
+      "steps": ["copy ./script_monkey.py script_monkey.py"]
     },
     {
       "name": "library-for-promise-types-in-python",
@@ -188,6 +186,21 @@
         "copy ./script_monkey.cf services/cfbs/script_monkey.cf",
         "policy_files services/cfbs/script_monkey.cf",
         "bundles script_monkey"
+      ]
+    },
+    {
+      "name": "cve-2021-3156-sudo",
+      "description": "Reporting data (inventory) and remediaton for CVE-2021-3156, a heap overflow in sudo that allows privilege escalation.",
+      "tags": ["supported", "security", "cve", "sudo"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "commit": "029ec4eac0d3d9b3bf7c8dc361db71f4796fc101",
+      "subdirectory": "./cves/cve-2021-3156-sudo",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./cve-2021-3156-sudo.cf services/security-hardening/cves/cve-2021-3156-sudo/",
+        "json cfbs/def.json def.json"
       ]
     }
   ],
