@@ -258,6 +258,17 @@
       "steps": [
         "copy ./disable_prelinking.cf services/autorun/disable_prelinking.cf"
       ]
+    },
+    {
+      "name": "./enable_report_dumps.cf",
+      "description": "Local policy file added using cfbs command line",
+      "tags": ["local"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./enable_report_dumps.cf services/cfbs/enable_report_dumps.cf",
+        "policy_files services/cfbs/enable_report_dumps.cf",
+        "bundles enable_report_dumps"
+      ]
     }
   ],
   "git": true

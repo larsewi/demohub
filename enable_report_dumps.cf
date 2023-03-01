@@ -1,0 +1,6 @@
+bundle agent enable_report_dumps
+{
+  files:
+      "$(sys.workdir)/enable_report_dumps"
+        create => "true";
+}
