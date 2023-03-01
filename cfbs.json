@@ -233,17 +233,6 @@
         "policy_files services/cfbs/delete-home-dotrhosts/",
         "bundles delete_home_dotrhosts:main"
       ]
-    },
-    {
-      "name": "./install_prelink.cf",
-      "description": "Local policy file added using cfbs command line",
-      "tags": ["local"],
-      "added_by": "cfbs add",
-      "steps": [
-        "copy ./install_prelink.cf services/cfbs/install_prelink.cf",
-        "policy_files services/cfbs/install_prelink.cf",
-        "bundles prelink"
-      ]
     }
   ],
   "git": true
