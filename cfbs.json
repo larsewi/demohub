@@ -233,6 +233,17 @@
         "policy_files services/cfbs/delete-home-dotrhosts/",
         "bundles delete_home_dotrhosts:main"
       ]
+    },
+    {
+      "name": "./install_packages.cf",
+      "description": "Local policy file added using cfbs command line",
+      "tags": ["local"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./install_packages.cf services/cfbs/install_packages.cf",
+        "policy_files services/cfbs/install_packages.cf",
+        "bundles install_packages"
+      ]
     }
   ],
   "git": true

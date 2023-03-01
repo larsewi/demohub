@@ -1,0 +1,27 @@
+body file control
+{
+  inputs => { "$(sys.libdir)/packages.cf" };
+}
+
+bundle agent install_packages
+{
+  vars:
+    debian::
+      "debian_packages"
+        slist => { "prelink" };
+
+    redhat::
+      "redhat_packages"
+        slist => { "prelink" };
+
+  packages:
+    debian::
+      "$(debian_packages)"
+        policy => "present",
+        package_module => apt_get;
+
+    redhat::
+      "$(redhat_packages)"
+        policy => "present",
+        package_module => yum;
+}
