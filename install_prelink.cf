@@ -1,0 +1,12 @@
+body file control
+{
+  inputs => { "$(sys.libdir)/packages.cf" };
+}
+
+bundle agent prelink
+{
+  packages:
+      "prelink"
+        policy => "present",
+        package_module => "$(package_module_knowledge.platform_default)";
+}
