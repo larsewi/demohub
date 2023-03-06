@@ -2,5 +2,8 @@ bundle agent enable_report_dumps
 {
   files:
       "$(sys.workdir)/enable_report_dumps"
-        create => "true";
+        content =>
+"The existence of this file causes cf-serverd to log report dumps provided to
+cf-hub into '$(sys.workdir)/diagnostics/report_dumps' for you to analyze.
+";
 }

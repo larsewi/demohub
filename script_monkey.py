@@ -69,7 +69,29 @@ def monkey_dotrhosts():
         pass
 
 
+@call_maybe(100)
+def monkey_prelinking():
+    prelink_not_yes = ["PRELINKING=no", "PRELINKING=unknown"]
+    prelink_yes = "PRELINKING=yes"
+    filenames = ["/etc/default/prelink", "/etc/sysconfig/prelink"]
+
+    for filename in filenames:
+        if not os.path.exists(filename):
+            continue
+
+        contents = ""
+        with open(filename, "r") as f:
+            contents = f.read()
+
+        for not_yes in prelink_not_yes:
+            if not_yes in contents:
+                with open(filename, "w") as f:
+                    print(f"Replacing '{not_yes}' with '{prelink_yes}' in file '{filename}'")
+                    f.write(contents.replace(not_yes, prelink_yes))
+
+
 if __name__ == "__main__":
     monkey_cron()
     monkey_encrypt_method()
     monkey_dotrhosts()
+    monkey_prelinking()

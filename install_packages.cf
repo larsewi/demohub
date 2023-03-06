@@ -6,13 +6,24 @@ body file control
 bundle agent install_packages
 {
   vars:
+      "common_packages"
+        slist => { "python3" };
+
     debian::
       "debian_packages"
-        slist => { "prelink" };
+        slist => { @(common_packages), "prelink" };
+
+    ubuntu::
+      "ubuntu_packages"
+        slist => { @(common_packages), "prelink" };
 
     redhat::
       "redhat_packages"
-        slist => { "prelink" };
+        slist => { @(common_packages) };
+
+    centos::
+      "centos_packages"
+        slist => { @(common_packages), "prelink" };
 
   packages:
     debian::
@@ -20,8 +31,18 @@ bundle agent install_packages
         policy => "present",
         package_module => apt_get;
 
+    ubuntu::
+      "$(ubuntu_packages)"
+        policy => "present",
+        package_module => apt_get;
+
     redhat::
       "$(redhat_packages)"
+        policy => "present",
+        package_module => yum;
+
+    centos::
+      "$(centos_packages)"
         policy => "present",
         package_module => yum;
 }
