@@ -1,9 +1,28 @@
+body file control
+{
+      inputs => { "$(sys.libdir)/stdlib.cf" };
+}
+
 bundle agent enable_report_dumps
 {
   files:
+    data:enable_report_dumps::
       "$(sys.workdir)/enable_report_dumps"
         content =>
 "The existence of this file causes cf-serverd to log report dumps provided to
-cf-hub into '$(sys.workdir)/diagnostics/report_dumps' for you to analyze.
+cf-hub into '$(sys.workdir)/diagnostics/' for you to analyze.
 ";
+
+      "$(sys.workdir)/diagnostics/cache_dumps/$(sys.systime)"
+        copy_from => local_cp("$(sys.workdir)/state/previous_state/."),
+        depth_search => recurse("inf");
+
+    !data:enable_report_dumps::
+      "$(sys.workdir)/enable_report_dumps"
+        delete => tidy;
+
+  methods:
+    !data:enable_report_dumps&data:prune_report_dumps::
+      "rm"
+        usebundle => rm_rf("$(sys.workdir)/enable_report_dumps");
 }
