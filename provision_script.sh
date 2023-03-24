@@ -7,6 +7,7 @@ cf-remote spawn --platform rhel-8-x64 --count 1 --name RHEL --role client
 cf-remote spawn --platform centos-7-x64 --count 1 --name CENTOS --role client
 
 cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap HUB --hub HUB
+cfbs build
 cf-remote deploy --hub HUB
 
 cf-remote install --package "cfengine-nova_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap HUB --clients UBUNTU

@@ -94,8 +94,17 @@ def monkey_prelinking():
 def monkey_files():
     filenames = ["/tmp/virus", "/tmp/rootkit", "/tmp/worm", "/tmp/reverse_shell"]
     random.shuffle(filenames)
-    with open(filenames[0], "w") as f:
+    filename = filenames[0]
+    print(f"Creating file '{filename}'")
+    with open(filename, "w") as f:
         f.write("You have been pwned!")
+
+
+@call_maybe(5)
+def monkey_aslr():
+    command = ["sysctl", "-w", "kernel.randomize_va_space=0"]
+    print("Running command '%s'" % " ".join(command))
+    subprocess.run(command)
 
 
 if __name__ == "__main__":
@@ -104,3 +113,4 @@ if __name__ == "__main__":
     monkey_dotrhosts()
     monkey_prelinking()
     monkey_files()
+    monkey_aslr()
