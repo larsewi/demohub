@@ -916,6 +916,19 @@
         "policy_files services/cfbs/modules/uninstall-dovecot/uninstall-dovecot.cf",
         "bundles uninstall_dovecot"
       ]
+    },
+    {
+      "name": "uninstall-ftp",
+      "description": "Ensures the ftp server package is not installed on the system(s).",
+      "tags": ["supported", "security", "compliance"],
+      "repo": "https://github.com/craigcomstock/cfengine-security-hardening",
+      "by": "https://github.com/craigcomstock",
+      "version": "0.0.2",
+      "commit": "2ec06ea5e78b0ad39cfde0137e0a8c25a983fae8",
+      "subdirectory": "uninstall-ftp",
+      "dependencies": ["autorun"],
+      "added_by": "cfbs add",
+      "steps": ["copy ./uninstall_ftp.cf services/autorun/uninstall_ftp.cf"]
     }
   ],
   "git": true
