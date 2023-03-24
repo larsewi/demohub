@@ -746,6 +746,21 @@
       "steps": [
         "copy ./inventory_yum_update_info.cf services/autorun/inventory_yum_update_info.cf"
       ]
+    },
+    {
+      "name": "ntp-maxpoll",
+      "description": "Ensures that maxpoll is configured (to 10 by default).",
+      "tags": ["supported", "security", "management"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.3",
+      "commit": "e2519214e8a29c7f37a36ca8a4beec687712448d",
+      "subdirectory": "./ntp-maxpoll",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./ntp-maxpoll.cf services/security-hardening/ntp-maxpoll/",
+        "json cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
