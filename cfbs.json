@@ -824,6 +824,21 @@
         "copy ./ssh-protocol-2.cf services/security-hardening/ssh-protocol-2/",
         "json cfbs/def.json def.json"
       ]
+    },
+    {
+      "name": "tmp-file-age",
+      "description": "Reporting data (inventory) and removal of old files in the /tmp directory.",
+      "tags": ["supported", "inventory", "management", "security", "tmp"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "commit": "56a7c149f33808db6796de77eff6eb0502c01e61",
+      "subdirectory": "./tmp-file-age",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./tmp-file-age.cf services/security-hardening/tmp-file-age/",
+        "json cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
