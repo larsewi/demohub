@@ -140,6 +140,19 @@ def monkey_etc_motd_access():
     subprocess.run(command)
 
 
+@call_maybe(5)
+def monkey_root_path():
+    commands = [
+        ["chmod", "0577", "/usr/sbin"],
+        ["chmod", "0577", "/usr/local/bin"],
+        ["chmod", "0577", "/usr/bin"],
+    ]
+    random.shuffle(commands)
+    command = commands[0]
+    print("Running command '%s'" % " ".join(command))
+    subprocess.run(command)
+
+
 if __name__ == "__main__":
     monkey_cron()
     monkey_encrypt_method()
@@ -150,3 +163,4 @@ if __name__ == "__main__":
     monkey_etc_issue_access()
     monkey_etc_issue_content()
     monkey_etc_motd_access()
+    monkey_root_path()
