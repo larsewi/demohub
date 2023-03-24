@@ -387,6 +387,32 @@
         "copy policy/main.cf services/inventory-clamav/main.cf",
         "json cfbs/def.json def.json"
       ]
+    },
+    {
+      "name": "etc-issue-content",
+      "description": "Manages the content of /etc/issue and provides limited inventory of it's content.",
+      "tags": ["supported", "security", "compliance", "inventory"],
+      "repo": "https://github.com/nickanderson/cfengine-etc_issue_content",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "commit": "459939185974e93bf5504da3393bc4de5a54e617",
+      "input": [
+        {
+          "type": "string",
+          "variable": "body",
+          "namespace": "etc_issue_content",
+          "bundle": "main",
+          "label": "Text",
+          "question": "What is the content that should be in /etc/issue?"
+        }
+      ],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy main.cf services/cfbs/modules/etc-issue-content/main.cf",
+        "bundles etc_issue_content:main",
+        "policy_files services/cfbs/modules/etc-issue-content/main.cf",
+        "input etc_issue_content/input.json def.json"
+      ]
     }
   ],
   "git": true
