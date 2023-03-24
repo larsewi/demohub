@@ -777,6 +777,37 @@
         "copy ./root-path-enforce-group-other-not-writable.cf services/world-writable-directories-in-root-path/",
         "json ./cfbs/def.json def.json"
       ]
+    },
+    {
+      "name": "library-sshd-config",
+      "description": "Library used by other modules to manage sshd configuration.",
+      "tags": ["library", "security", "ssh", "experimental"],
+      "repo": "https://github.com/nickanderson/cfengine-ssh",
+      "by": "https://github.com/nickanderson",
+      "version": "0.1.0",
+      "commit": "abff34c08bf27af56c4c3939bbb6f848eac7fb8d",
+      "subdirectory": "modules/library-sshd-config",
+      "added_by": "ssh-ciphers-strong",
+      "steps": [
+        "copy ./global-key-values.cf services/library-sshd-config/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    {
+      "name": "ssh-ciphers-strong",
+      "description": "Ensures that the SSH daemon uses strong ciphers.",
+      "tags": ["security", "ssh", "experimental"],
+      "repo": "https://github.com/nickanderson/cfengine-security-hardening",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.4",
+      "commit": "7c5e3638ddcf2ba097644eefe0a3bc9d7f2269e6",
+      "subdirectory": "./ssh-ciphers-strong",
+      "dependencies": ["library-sshd-config"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./ssh-ciphers-strong.cf services/security-hardening/ssh-ciphers-strong/",
+        "json cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
