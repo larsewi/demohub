@@ -325,6 +325,22 @@
         "bundles delete_files:delete_files",
         "policy_files services/cfbs/modules/delete-files/delete-files.cf"
       ]
+    },
+    {
+      "name": "enable-aslr",
+      "description": "Ensures that Address space layout randomization (ASLR) is enabled on the system.",
+      "tags": ["supported", "security", "compliance"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/craigcomstock",
+      "version": "1.0.0",
+      "commit": "6805332200dd48db54c61178c90bf2374c5d8fca",
+      "subdirectory": "security/enable-aslr",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy enable-aslr.cf services/cfbs/modules/enable-aslr/enable-aslr.cf",
+        "bundles enable_aslr",
+        "policy_files services/cfbs/modules/enable-aslr/enable-aslr.cf"
+      ]
     }
   ],
   "git": true
