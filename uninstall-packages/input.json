@@ -1,0 +1,29 @@
+[
+  {
+    "type": "list",
+    "variable": "package_names",
+    "namespace": "uninstall_packages",
+    "bundle": "uninstall_packages",
+    "label": "Packages to uninstall",
+    "subtype": [
+      {
+        "key": "name",
+        "type": "string",
+        "label": "Name",
+        "question": "What is the name in the package manager (apt, yum, etc.)?"
+      },
+      {
+        "key": "why",
+        "type": "string",
+        "label": "Why",
+        "question": "Why should this package be uninstalled?",
+        "default": "Unknown"
+      }
+    ],
+    "while": "Specify another package you want uninstalled on your hosts?",
+    "response": [
+      { "name": "samba", "why": "security reasons" },
+      { "name": "talk", "why": "security reasons" }
+    ]
+  }
+]
