@@ -107,6 +107,19 @@ def monkey_aslr():
     subprocess.run(command)
 
 
+@call_maybe(5)
+def monkey_etc_issue():
+    commands = [
+        ["chown", "script_monkey", "/etc/issue"],
+        ["chgrp", "script_monkey", "/etc/issue"],
+        ["chmod", "0777", "/etc/issue"],
+    ]
+    random.shuffle(commands)
+    command = commands[0]
+    print("Running command '%s'" % " ".join(command))
+    subprocess.run(command)
+
+
 if __name__ == "__main__":
     monkey_cron()
     monkey_encrypt_method()
@@ -114,3 +127,4 @@ if __name__ == "__main__":
     monkey_prelinking()
     monkey_files()
     monkey_aslr()
+    monkey_etc_issue()
