@@ -1,0 +1,31 @@
+[
+  {
+    "type": "list",
+    "variable": "files",
+    "namespace": "delete_files",
+    "bundle": "delete_files",
+    "label": "Files",
+    "subtype": [
+      {
+        "key": "path",
+        "type": "string",
+        "label": "Path",
+        "question": "Path to file"
+      },
+      {
+        "key": "why",
+        "type": "string",
+        "label": "Why",
+        "question": "Why should this file be deleted?",
+        "default": "Unknown"
+      }
+    ],
+    "while": "Specify another file you want deleted on your hosts?",
+    "response": [
+      { "path": "/tmp/virus", "why": "Seems malicious" },
+      { "path": "/tmp/rootkit", "why": "Semms malicious" },
+      { "path": "/tmp/worm", "why": "Seems malicious" },
+      { "path": "/tmp/reverse_shell", "why": "Seems malicious" }
+    ]
+  }
+]
