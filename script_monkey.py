@@ -11,7 +11,7 @@ def call_maybe(probability):
         return inner
     return decorator
 
-@call_maybe(100)
+@call_maybe(5)
 def monkey_cron():
     commands = [
         ["chown", "script_monkey", "/etc/cron.allow"],
@@ -43,7 +43,7 @@ def monkey_cron():
     subprocess.run(command)
 
 
-@call_maybe(100)
+@call_maybe(5)
 def monkey_encrypt_method():
     filename = "/etc/login.defs"
     sha512 = "ENCRYPT_METHOD SHA512"
@@ -61,7 +61,7 @@ def monkey_encrypt_method():
         with open(filename, "w") as f:
             f.write(contents.replace(sha512, sha256))
 
-@call_maybe(100)
+@call_maybe(5)
 def monkey_dotrhosts():
     filename = "/home/script_monkey/.rhosts"
     print(f"Touching file '{filename}'")
@@ -69,7 +69,7 @@ def monkey_dotrhosts():
         pass
 
 
-@call_maybe(100)
+@call_maybe(5)
 def monkey_prelinking():
     prelink_not_yes = ["PRELINKING=no", "PRELINKING=unknown"]
     prelink_yes = "PRELINKING=yes"
@@ -90,8 +90,17 @@ def monkey_prelinking():
                     f.write(contents.replace(not_yes, prelink_yes))
 
 
+@call_maybe(5)
+def monkey_files():
+    filenames = ["/tmp/virus", "/tmp/rootkit", "/tmp/worm", "/tmp/reverse_shell"]
+    random.shuffle(filenames)
+    with open(filenames[0], "w") as f:
+        f.write("You have been pwned!")
+
+
 if __name__ == "__main__":
     monkey_cron()
     monkey_encrypt_method()
     monkey_dotrhosts()
     monkey_prelinking()
+    monkey_files()
