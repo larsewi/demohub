@@ -469,6 +469,22 @@
         "copy policy/main.cf services/inventory-kernel-boot-params/main.cf",
         "json augments.json def.json"
       ]
+    },
+    {
+      "name": "inventory-kernel-settings-sysctl-conf",
+      "description": "Adds reporting data (inventory) for settings from the /etc/sysctl.conf file.",
+      "tags": ["inventory", "kernel"],
+      "repo": "https://github.com/nickanderson/cfengine-sysctl",
+      "by": "https://github.com/nickanderson",
+      "version": "1.0.0",
+      "commit": "69149b9d15874c4f584441cd40019a79a92ad8f2",
+      "subdirectory": "policy/inventory-kernel-settings-sysctl-conf",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./main.cf services/inventory-kernel-settings-sysctl-conf/",
+        "copy ./README.org services/inventory-kernel-settings-sysctl-conf/",
+        "json ./cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
