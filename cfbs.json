@@ -625,6 +625,22 @@
         "copy ./inventory_passwd_users_password_empty.cf services/local-users/inventory_passwd_users_password_empty/",
         "json cfbs/def.json def.json"
       ]
+    },
+    {
+      "name": "inventory-local-users-password-hashing-algorithm",
+      "description": "Adds reporting data (inventory) for password hashing algorithms in use by local users.",
+      "tags": ["supported", "inventory", "security"],
+      "repo": "https://github.com/nickanderson/cfengine-local_users",
+      "by": "https://github.com/nickanderson",
+      "version": "2.0.4",
+      "commit": "3b50be1e5ab09578109921b8f287603b37811350",
+      "subdirectory": "inventory_passwd_users_password_hashing_algorithm",
+      "dependencies": ["library-parsed-local-users"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./inventory_local_user_pw_hashing_algorithm.cf services/local-users/inventory_passwd_users_password_hashing_algorithm/",
+        "json cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
