@@ -656,6 +656,21 @@
         "policy_files services/cfbs/modules/inventory-openssl-versions/inventory-openssl-versions.cf",
         "bundles inventory_openssl_versions:inventory_openssl_versions"
       ]
+    },
+    {
+      "name": "inventory-ssh-host-key-fingerprints",
+      "description": "Adds reporting data (inventory) for the SSH host key fingerprints.",
+      "tags": ["inventory", "security", "ssh", "experimental"],
+      "repo": "https://github.com/nickanderson/cfengine-ssh",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.2",
+      "commit": "dbd948d795a32b29dcbfad54d9f16326f485d094",
+      "subdirectory": "policy/inventory/host-key-fingerprints",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./inventory-ssh-host-key-fingerprints.cf services/ssh/inventory/host-key-fingerprints/inventory-ssh-host-key-fingerprints.cf",
+        "json cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
