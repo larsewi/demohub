@@ -929,6 +929,21 @@
       "dependencies": ["autorun"],
       "added_by": "cfbs add",
       "steps": ["copy ./uninstall_ftp.cf services/autorun/uninstall_ftp.cf"]
+    },
+    {
+      "name": "uninstall-openldap-server",
+      "description": "Ensures the openldap server package is not installed on the system(s).",
+      "tags": ["security", "compliance", "experimental"],
+      "repo": "https://github.com/vpodzime/cfengine-security-hardening",
+      "by": "https://github.com/vpodzime",
+      "version": "0.0.2",
+      "commit": "b0c5d6e9f2a9fb5904cb1eb9cd948ee7907969ea",
+      "subdirectory": "uninstall-openldap-server",
+      "dependencies": ["autorun"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./openldap_server_policy.cf services/autorun/openldap_server_policy.cf"
+      ]
     }
   ],
   "git": true
