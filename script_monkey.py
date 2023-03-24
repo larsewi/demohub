@@ -108,7 +108,7 @@ def monkey_aslr():
 
 
 @call_maybe(5)
-def monkey_etc_issue():
+def monkey_etc_issue_access():
     commands = [
         ["chown", "script_monkey", "/etc/issue"],
         ["chgrp", "script_monkey", "/etc/issue"],
@@ -120,6 +120,13 @@ def monkey_etc_issue():
     subprocess.run(command)
 
 
+@call_maybe(5)
+def monkey_etc_issue_content():
+    print("Changing content of /etc/issue")
+    with open("/etc/issue", "w") as f:
+        f.write("You have been pwned!")
+
+
 if __name__ == "__main__":
     monkey_cron()
     monkey_encrypt_method()
@@ -127,4 +134,5 @@ if __name__ == "__main__":
     monkey_prelinking()
     monkey_files()
     monkey_aslr()
-    monkey_etc_issue()
+    monkey_etc_issue_access()
+    monkey_etc_issue_content()
