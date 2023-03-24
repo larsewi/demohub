@@ -515,6 +515,37 @@
         "copy policy/main.cf services/inventory-lastlog/",
         "json cfbs/def.json def.json"
       ]
+    },
+    {
+      "name": "library-parsed-local-groups",
+      "description": "Parses local group from the /etc/group file on the system.",
+      "tags": ["supported", "library"],
+      "repo": "https://github.com/nickanderson/cfengine-local_users",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "commit": "3028f74671c0bd8c8668a5b18245191439b0bad9",
+      "subdirectory": "parsed_etc_group",
+      "added_by": "inventory-local-groups",
+      "steps": [
+        "copy ./parsed_etc_group.cf services/local-groups/parsed_etc_group/",
+        "json cfbs/def.json def.json"
+      ]
+    },
+    {
+      "name": "inventory-local-groups",
+      "description": "Adds reporting data (inventory) for the local groups on the system.",
+      "tags": ["inventory", "supported"],
+      "repo": "https://github.com/nickanderson/cfengine-local_users",
+      "by": "https://github.com/nickanderson",
+      "version": "0.0.1",
+      "commit": "633fdc37f6369461fcd866ad69eb84cd9feb595c",
+      "subdirectory": "inventory-local-groups",
+      "dependencies": ["library-parsed-local-groups"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./inventory-local-groups.cf services/local-groups/inventory-local-groups/",
+        "json cfbs/def.json def.json"
+      ]
     }
   ],
   "git": true
