@@ -852,6 +852,22 @@
       "dependencies": ["autorun"],
       "added_by": "cfbs add",
       "steps": ["copy ./tmp_nosuid.cf services/autorun/tmp_nosuid.cf"]
+    },
+    {
+      "name": "uninstall-apache",
+      "description": "Ensures the apache package is not installed.",
+      "tags": ["supported", "security", "compliance"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/olehermanse",
+      "version": "1.0.0",
+      "commit": "6805332200dd48db54c61178c90bf2374c5d8fca",
+      "subdirectory": "security/uninstall-apache",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy uninstall-apache.cf services/cfbs/modules/uninstall-apache/uninstall-apache.cf",
+        "policy_files services/cfbs/modules/uninstall-apache/uninstall-apache.cf",
+        "bundles uninstall_apache"
+      ]
     }
   ],
   "git": true
