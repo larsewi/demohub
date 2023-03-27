@@ -15,4 +15,6 @@ cf-remote install --package "cfengine-nova_3.22.0a.3f67ca765_25996.debian9_amd64
 cf-remote install --package "cfengine-nova-3.22.0a.3f67ca765-25996.el8.x86_64.rpm" --demo --bootstrap HUB --clients RHEL
 cf-remote install --package "cfengine-nova-3.22.0a.3f67ca765-25995.el7.x86_64.rpm" --demo --bootstrap HUB --clients CENTOS
 
+cf-remote run --hosts HUB "sudo systemctl restart cf-hub"
+
 cf-remote info --hosts HUB
