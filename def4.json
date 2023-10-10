@@ -1,0 +1,43 @@
+{
+  "classes":{
+      "mpf_augments_control_enabled": [ "any" ]
+  },
+  "vars": {
+    "control_hub_hub_schedule": ["Min00", "Min20", "Min40" ]
+  },
+  "variables": {
+    "demohub:local.users": {
+      "value": [
+        "cassianandor",
+        "jarjarbinks",
+        "chewbacca",
+        "bobafett",
+        "jabbathehut",
+        "obiwankenobi",
+        "leiaorgana",
+        "hansolo",
+        "lukeskywaker",
+        "darthsidious",
+        "maul",
+        "rey",
+        "c3po",
+        "r2d2",
+        "anakinskywalker"
+      ],
+      "comment": "Local users"
+    },
+    "demohub:local.groups": {
+      "value": [
+        "deepcore",
+        "thecolonies",
+        "innerrim",
+        "outerrim",
+        "coreworlds",
+        "midrim",
+        "wildspace",
+        "westernreaches"
+      ],
+      "comment": "Local groups"
+    }
+  }
+}

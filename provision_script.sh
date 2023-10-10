@@ -1,20 +1,44 @@
 #!/usr/bin/env bash
 
-cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name HUB --role hub
-cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name UBUNTU --role client
-cf-remote spawn --platform debian-9-x64 --count 1 --name DEBIAN --role client
-cf-remote spawn --platform rhel-8-x64 --count 1 --name RHEL --role client
-cf-remote spawn --platform centos-7-x64 --count 1 --name CENTOS --role client
+cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name hub1 --role hub
+cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name hub2 --role hub
+cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name hub3 --role hub
+cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name hub4 --role hub
+cf-remote spawn --platform ubuntu-22-04-x64 --count 1 --name hub5 --role hub
 
-cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap HUB --hub HUB
+sleep 30
+
+cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap hub1 --hub hub1
+rm -f def.json
+cp def1.json def.json
 cfbs build
-cf-remote deploy --hub HUB
+cf-remote deploy --hub hub1
+cf-remote run --hosts hub1 "sudo systemctl restart cf-hub"
 
-cf-remote install --package "cfengine-nova_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap HUB --clients UBUNTU
-cf-remote install --package "cfengine-nova_3.22.0a.3f67ca765_25996.debian9_amd64.deb" --demo --bootstrap HUB --clients DEBIAN
-cf-remote install --package "cfengine-nova-3.22.0a.3f67ca765-25996.el8.x86_64.rpm" --demo --bootstrap HUB --clients RHEL
-cf-remote install --package "cfengine-nova-3.22.0a.3f67ca765-25995.el7.x86_64.rpm" --demo --bootstrap HUB --clients CENTOS
+cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap hub2 --hub hub2
+rm -f def.json
+cp def2.json def.json
+cfbs build
+cf-remote deploy --hub hub2
+cf-remote run --hosts hub2 "sudo systemctl restart cf-hub"
 
-cf-remote run --hosts HUB "sudo systemctl restart cf-hub"
+cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap hub3 --hub hub3
+rm -f def.json
+cp def3.json def.json
+cfbs build
+cf-remote deploy --hub hub3
+cf-remote run --hosts hub3 "sudo systemctl restart cf-hub"
 
-cf-remote info --hosts HUB
+cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap hub4 --hub hub4
+rm -f def.json
+cp def4.json def.json
+cfbs build
+cf-remote deploy --hub hub4
+cf-remote run --hosts hub4 "sudo systemctl restart cf-hub"
+
+cf-remote install --package "cfengine-nova-hub_3.22.0a.3f67ca765_25996.ubuntu22_amd64.deb" --demo --bootstrap hub5 --hub hub5
+rm -f def.json
+cp def5.json def.json
+cfbs build
+cf-remote deploy --hub hub5
+cf-remote run --hosts hub5 "sudo systemctl restart cf-hub"

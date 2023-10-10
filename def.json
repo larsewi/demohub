@@ -3,7 +3,7 @@
       "mpf_augments_control_enabled": [ "any" ]
   },
   "vars": {
-    "control_hub_hub_schedule": ["Min00", "Min15", "Min30", "Min45" ]
+    "control_hub_hub_schedule": ["Min00", "Min30" ]
   },
   "variables": {
     "demohub:local.users": {
